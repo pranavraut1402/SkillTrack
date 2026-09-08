@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    match /trainees/{traineeId} {
+      allow read, write: if isSignedIn();
+    }
+
+    match /trainingRecords/{recordId} {
+      allow read, write: if isSignedIn();
+    }
+
+    match /employmentRecords/{recordId} {
+      allow read, write: if isSignedIn();
+    }
+
+    match /followUps/{followUpId} {
+      allow read, write: if isSignedIn();
+    }
+
+    match /assessments/{assessmentId} {
+      allow read, write: if isSignedIn();
+    }
+
+    match /skillProfiles/{profileId} {
+      allow read, write: if isSignedIn();
+    }
+
+    match /{document=**} {
+      allow read, write: if isSignedIn();
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "entities": {
+    "trainee": {
+      "title": "Trainee",
+      "description": "Candidate registered under State Skill Mission registry",
+      "type": "object",
+      "properties": {
+        "skillId": { "type": "string" },
+        "name": { "type": "string" },
+        "gender": { "type": "string" },
+        "profileImage": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "district": { "type": "string" },
+        "state": { "type": "string" },
+        "course": { "type": "string" },
+        "sector": { "type": "string" },
+        "trainingCenter": { "type": "string" },
+        "batchId": { "type": "string" },
+        "registrationDate": { "type": "string" },
+        "attendance": { "type": "number" },
+        "assessmentScore": { "type": "number" },
+        "certificationStatus": { "type": "string" },
+        "placementStatus": { "type": "string" },
+        "employmentStatus": { "type": "string" }
+      },
+      "required": ["skillId", "name"]
+    },
+    "trainingRecord": {
+      "title": "TrainingRecord",
+      "description": "Training batch hours and center execution record",
+      "type": "object",
+      "properties": {
+        "skillId": { "type": "string" },
+        "batchId": { "type": "string" },
+        "course": { "type": "string" },
+        "trainingCenter": { "type": "string" },
+        "attendance": { "type": "number" },
+        "totalHours": { "type": "number" },
+        "completedHours": { "type": "number" },
+        "trainingStatus": { "type": "string" }
+      },
+      "required": ["skillId"]
+    },
+    "employmentRecord": {
+      "title": "EmploymentRecord",
+      "description": "Post-placement employment verification and salary record",
+      "type": "object",
+      "properties": {
+        "skillId": { "type": "string" },
+        "employer": { "type": "string" },
+        "jobRole": { "type": "string" },
+        "employmentType": { "type": "string" },
+        "startingSalary": { "type": "number" },
+        "currentSalary": { "type": "number" },
+        "joiningDate": { "type": "string" },
+        "employmentStatus": { "type": "string" },
+        "tenureMonths": { "type": "number" }
+      },
+      "required": ["skillId"]
+    },
+    "followUp": {
+      "title": "FollowUp",
+      "description": "Retention follow-up milestone verification",
+      "type": "object",
+      "properties": {
+        "skillId": { "type": "string" },
+        "milestone": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "completedDate": { "type": "string" },
+        "employer": { "type": "string" },
+        "currentSalary": { "type": "number" },
+        "retentionStatus": { "type": "string" },
+        "proofMethod": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["skillId", "milestone"]
+    },
+    "assessment": {
+      "title": "Assessment",
+      "description": "Third-party assessment and certification evaluation",
+      "type": "object",
+      "properties": {
+        "skillId": { "type": "string" },
+        "assessmentScore": { "type": "number" },
+        "assessmentDate": { "type": "string" },
+        "result": { "type": "string" },
+        "certificateStatus": { "type": "string" }
+      },
+      "required": ["skillId"]
+    },
+    "skillProfile": {
+      "title": "SkillProfile",
+      "description": "Skill gap analytics and AI recommendations profile",
+      "type": "object",
+      "properties": {
+        "skillId": { "type": "string" },
+        "currentSkills": { "type": "array" },
+        "recommendedSkills": { "type": "array" },
+        "skillGaps": { "type": "array" },
+        "AIRecommendations": { "type": "string" },
+        "riskLevel": { "type": "string" }
+      },
+      "required": ["skillId"]
+    }
+  },
+  "firestore": {
+    "/trainees/{traineeId}": {
+      "schema": "trainee",
+      "description": "Directory of registered skill mission candidates"
+    },
+    "/trainingRecords/{recordId}": {
+      "schema": "trainingRecord",
+      "description": "Training execution records by skillId"
+    },
+    "/employmentRecords/{recordId}": {
+      "schema": "employmentRecord",
+      "description": "Employment verification by skillId"
+    },
+    "/followUps/{followUpId}": {
+      "schema": "followUp",
+      "description": "Retention milestone audit logs by skillId"
+    },
+    "/assessments/{assessmentId}": {
+      "schema": "assessment",
+      "description": "Assessment scores and certificate status by skillId"
+    },
+    "/skillProfiles/{profileId}": {
+      "schema": "skillProfile",
+      "description": "Skill profiles, gaps and AI recommendation trajectories by skillId"
+    }
+  }
+}
